@@ -1,0 +1,2 @@
+class TechnicsRepairDocument < ApplicationRecord
+end

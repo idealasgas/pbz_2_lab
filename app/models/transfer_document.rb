@@ -1,0 +1,2 @@
+class TransferDocument < ApplicationRecord
+end

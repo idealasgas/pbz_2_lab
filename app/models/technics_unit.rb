@@ -1,0 +1,2 @@
+class TechnicsUnit < ApplicationRecord
+end

@@ -10,9 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2019_10_23_211523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "employees", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "finish_date"
+    t.string "subdivision"
+    t.integer "sex"
+    t.string "position"
+    t.string "name"
+    t.string "last_name"
+    t.string "middle_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.datetime "reception_date"
+    t.string "name"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "technics_repair_documents", force: :cascade do |t|
+    t.datetime "start_date"
+    t.string "type"
+    t.integer "term"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "technics_units", force: :cascade do |t|
+    t.string "inventory_number"
+    t.string "name"
+    t.string "model"
+    t.integer "production_year"
+    t.string "subdivision"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "transfer_documents", force: :cascade do |t|
+    t.datetime "start_date"
+    t.string "subdivision"
+    t.datetime "finish_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
