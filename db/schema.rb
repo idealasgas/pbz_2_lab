@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_23_211523) do
+ActiveRecord::Schema.define(version: 2019_10_31_201622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 2019_10_23_211523) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "technics_repair_document_id"
+    t.index ["technics_repair_document_id"], name: "index_invoices_on_technics_repair_document_id"
   end
 
   create_table "technics_repair_documents", force: :cascade do |t|
@@ -42,6 +44,11 @@ ActiveRecord::Schema.define(version: 2019_10_23_211523) do
     t.integer "term"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "technics_unit_id"
+    t.integer "acceptor_id"
+    t.integer "receiver_id"
+    t.integer "repair_man_id"
+    t.index ["technics_unit_id"], name: "index_technics_repair_documents_on_technics_unit_id"
   end
 
   create_table "technics_units", force: :cascade do |t|
@@ -60,6 +67,11 @@ ActiveRecord::Schema.define(version: 2019_10_23_211523) do
     t.datetime "finish_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "technics_unit_id"
+    t.index ["technics_unit_id"], name: "index_transfer_documents_on_technics_unit_id"
   end
 
+  add_foreign_key "invoices", "technics_repair_documents"
+  add_foreign_key "technics_repair_documents", "technics_units"
+  add_foreign_key "transfer_documents", "technics_units"
 end
