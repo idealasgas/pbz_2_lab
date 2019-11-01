@@ -1,8 +1,8 @@
-<h1>Добавить новую единицу техники</h1>
+<h1>Изменение единицы техники</h1>
 
 <h1><%=flash[:errors]%></h1>
 
-<%= form_with scope: :technics_unit, url: technics_units_path, local: true do |form| %>
+<%= form_with(model: @unit, local: true) do |form| %>
   <p>
     <%= form.label 'Имя' %><br>
     <%= form.text_field :name %>
@@ -24,6 +24,6 @@
   </p>
 
   <p>
-    <%= form.submit 'Добавить' %>
+    <%= form.submit 'Изменить' %>
   </p>
 <% end %>

@@ -1,0 +1,16 @@
+<table>
+  <%@units.each do |unit|%>
+    <tr>
+      <td><%= unit.id %></td>
+      <td><%= unit.name %></td>
+      <td><%= unit.inventory_number %></td>
+      <td><%= unit.model %></td>
+      <td><%= unit.production_year %></td>
+      <td><%= unit.subdivision %></td>
+      <td><%= link_to 'Изменить', edit_technics_unit_path(unit) %></td>
+      <td><%= link_to 'Списать', technics_unit_path(unit),
+              method: :delete,
+              data: { confirm: 'Точно?' } %></td>
+    </tr>
+  <%end%>
+</table>
