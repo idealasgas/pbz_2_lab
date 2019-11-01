@@ -1,0 +1,2 @@
+module TechnicsRepairDocumentHelper
+end

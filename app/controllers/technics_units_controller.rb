@@ -27,7 +27,7 @@ class TechnicsUnitsController < ApplicationController
     @unit = TechnicsUnit.find(params[:id])
   end
 
-  def update
+  def update # когда она меняет подразделение нужно создавать трансфер
     validate_params
     unit = TechnicsUnit.find(params[:id])
 

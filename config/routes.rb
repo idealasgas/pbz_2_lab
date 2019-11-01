@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   get 'home/index'
 
   resources :technics_units
+  resources :technics_repair_documents
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

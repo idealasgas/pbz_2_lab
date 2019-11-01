@@ -1,0 +1,29 @@
+<h1>Добавить новую единицу техники</h1>
+
+<h1><%=flash[:errors]%></h1>
+
+<%= form_with scope: :technics_unit, url: technics_units_path, local: true do |form| %>
+  <p>
+    <%= form.label 'Имя' %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label 'Модель' %><br>
+    <%= form.text_field :model %>
+  </p>
+
+  <p>
+    <%= form.label 'Год производства' %><br>
+    <%= form.text_field :production_year %>
+  </p>
+
+  <p>
+    <%= form.label 'Подразделение' %><br>
+    <%= form.text_field :subdivision %>
+  </p>
+
+  <p>
+    <%= form.submit 'Добавить' %>
+  </p>
+<% end %>
