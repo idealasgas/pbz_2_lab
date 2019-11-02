@@ -1,2 +1,0 @@
-class TechnicsRepairDocumentController < ApplicationController
-end

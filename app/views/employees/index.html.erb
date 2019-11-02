@@ -1,0 +1,19 @@
+<%= link_to 'Добавить нового сотрудника', new_employee_path %>
+<table>
+  <%@employees.each do |employee|%>
+    <tr>
+      <td><%= employee.id %></td>
+      <td><%= employee.last_name %> <%= employee.name %> <%= employee.middle_name %></td>
+      <td><%= employee.start_date %></td>
+      <td><%= employee.finish_date %></td>
+      <td><%= employee.subdivision %></td>
+      <td><%= employee.sex %></td>
+      <td><%= employee.position %></td>
+      <td><%= link_to 'Изменить', edit_employee_path(employee) %></td>
+      <td><%= link_to 'Уволить', employee_path(employee),
+              method: :delete,
+              data: { confirm: 'Точно?' } %></td>
+    </tr>
+  <%end%>
+</table>
+<%= link_to 'Назад', root_path %>

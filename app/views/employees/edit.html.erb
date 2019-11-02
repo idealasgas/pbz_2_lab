@@ -1,0 +1,50 @@
+<h1>Изменить сотрудника</h1>
+
+<h1><%=flash[:errors]%></h1>
+
+<%= form_with(model: @employee, local: true) do |form| %>
+  <p>
+    <%= form.label 'Фамилия' %><br>
+    <%= form.text_field :last_name %>
+  </p>
+
+  <p>
+    <%= form.label 'Имя' %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label 'Отчество' %><br>
+    <%= form.text_field :middle_name %>
+  </p>
+
+  <p>
+    <%= form.label 'Должность' %><br>
+    <%= form.text_field :position %>
+  </p>
+
+  <p>
+    <%= form.label 'Подразделение' %><br>
+    <%= form.text_field :subdivision %>
+  </p>
+
+  <p>
+    <%= form.label 'Начало работы' %><br>
+    <%= form.date_field :start_date %>
+  </p>
+
+  <p>
+    <%= form.label 'Окончание работы работы' %><br>
+    <%= form.date_field :finish_date %>
+  </p>
+
+  <p>
+    <%= form.label 'Пол' %><br>
+    <%= form.label 'Мужской' %><%= form.radio_button :sex, :male %>
+    <%= form.label 'Женский' %><%= form.radio_button :sex, :female %>
+  </p>
+
+  <p>
+    <%= form.submit 'Изменить' %>
+  </p>
+<% end %>
