@@ -11,6 +11,7 @@ class TechnicsUnitsController < ApplicationController
                           production_year: params[:technics_unit][:production_year].to_i,
                           subdivision: params[:technics_unit][:subdivision])
       unit.update(inventory_number: SecureRandom.hex(10))
+      transfer = TransferDocument.create(technics_unit: unit, start_date: DateTime.now, subdivision: params[:technics_unit][:subdivision])
 
       redirect_to technics_units_path
     else
@@ -27,11 +28,16 @@ class TechnicsUnitsController < ApplicationController
     @unit = TechnicsUnit.find(params[:id])
   end
 
-  def update # когда она меняет подразделение нужно создавать трансфер
+  def update
     validate_params
     unit = TechnicsUnit.find(params[:id])
 
     if @errors.blank?
+      if unit.subdivision != params[:technics_unit][:subdivision]
+        unit.transfer_documents.last.update(finish_date: DateTime.now)
+        TransferDocument.create(technics_unit: unit, start_date: DateTime.now, subdivision: params[:technics_unit][:subdivision])
+      end
+
       unit.update(name: params[:technics_unit][:name],
                   model: params[:technics_unit][:model],
                   production_year: params[:technics_unit][:production_year].to_i,

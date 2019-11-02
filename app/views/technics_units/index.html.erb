@@ -1,3 +1,4 @@
+<%= link_to 'Добавить новую единицу техники', new_technics_unit_path %>
 <table>
   <%@units.each do |unit|%>
     <tr>
@@ -15,3 +16,4 @@
     </tr>
   <%end%>
 </table>
+<%= link_to 'Назад', root_path %>
