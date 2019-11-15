@@ -2,6 +2,19 @@
   <table>
     <tr>
       <td><%= doc.id %></td>
+      <td><%= doc.start_date %></td>
+      <td><%= doc.repair_type %></td>
+      <td><%= doc.term %></td>
+      <td><%= doc.client.last_name %> <%= doc.client.name %> <%= doc.client.middle_name %></td>
+      <td><%= doc.client.id %></td>
+      <td><%= doc.receiver.last_name %> <%= doc.receiver.name %> <%= doc.receiver.middle_name %></td>
+      <td><%= doc.receiver.id %></td>
+      <td><%= doc.repair_man.last_name %> <%= doc.repair_man.name %> <%= doc.repair_man.middle_name %></td>
+      <td><%= doc.repair_man.id %></td>
+      <td><%= doc.repair_man.position %></td>
+      <td><button class="invoice">просмотреть накладную</button></td>
+
     </tr>
   </table>
 <% end %>
+<%= link_to 'назад', root_path %>

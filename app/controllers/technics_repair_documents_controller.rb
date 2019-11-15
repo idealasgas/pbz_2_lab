@@ -3,12 +3,10 @@ class TechnicsRepairDocumentsController < ApplicationController
   end
 
   def create
-    binding.pry
     validate_params
     parameters = params[:repair_document]
 
     if @errors.blank?
-      binding.pry
       doc = TechnicsRepairDocument.create(start_date: parameters[:start_date],
                                           repair_type: parameters[:type],
                                           term: parameters[:term].to_i,
