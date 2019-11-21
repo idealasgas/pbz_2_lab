@@ -30,6 +30,9 @@ class TechnicsRepairDocumentsController < ApplicationController
     @repair_documents = TechnicsRepairDocument.all
   end
 
+  def subdivision
+  end
+
   private
 
   def validate_params

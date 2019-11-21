@@ -1,6 +1,11 @@
 class EmployeesController < ApplicationController
   def index
     @employees = Employee.all
+    if params[:search].present?
+      @employees = Employee.where(age: params[:search][:age].to_i) if params[:search][:age].present?
+      @employees = @employees.where(sex: params[:search][:sex]) if params[:search][:sex].present?
+      @employees = @employees.where(subdivision: params[:search][:subdivision]) if params[:search][:subdivision].present?
+    end
   end
 
   def new
@@ -17,7 +22,8 @@ class EmployeesController < ApplicationController
                           position: parameters[:position],
                           subdivision: parameters[:subdivision],
                           start_date: DateTime.parse(parameters[:start_date]),
-                          sex: parameters[:sex])
+                          sex: parameters[:sex],
+                          age: parameters[:age].to_i)
       unless parameters[:finish_date].blank?
         employee.update(finish_date: parameters[:finish_date])
       end
@@ -46,7 +52,8 @@ class EmployeesController < ApplicationController
                       position: parameters[:position],
                       subdivision: parameters[:subdivision],
                       start_date: DateTime.parse(parameters[:start_date]),
-                      sex: parameters[:sex])
+                      sex: parameters[:sex],
+                      age: parameters[:age].to_i)
 
       redirect_to employees_path
     else
@@ -92,6 +99,10 @@ class EmployeesController < ApplicationController
 
     if params[:employee][:sex].blank?
       @errors.push("Нужно указать пол сотрудника")
+    end
+
+    if params[:employee][:age].blank?
+      @errors.push("Нужно указать возраст сотрудника")
     end
   end
 end

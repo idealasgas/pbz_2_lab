@@ -1,5 +1,10 @@
 <h1>ok fine</h1>
-<%= link_to 'единицы техники', technics_units_path %>
-<%= link_to 'сотрудники', employees_path%>
-<%= link_to 'документы о сдаче в ремонт', technics_repair_documents_path %>
-<%= link_to 'документы о перемещении техники', transfer_documents_path %>
+<ul>
+  <li><%= link_to 'единицы техники', technics_units_path %></li>
+  <li><%= link_to 'сотрудники', employees_path%></li>
+  <li><%= link_to 'документы о сдаче в ремонт', technics_repair_documents_path %></li>
+  <li><%= link_to 'документы о перемещении техники', transfer_documents_path %></li>
+  <li><%= link_to 'Вывести для просмотра название подразделения,
+                   у которого была наибольшее количество техники,
+                   переданной в ремонт', winner_path %></li>
+</ul>

@@ -1,1 +1,12 @@
+<% @units.each do |unit| %>
+  <h1><%= unit.name %></h1>
+  <table>
+  <% unit.transfer_documents.each do |doc| %>
+    <tr>
+      <td>from <%= doc.start_date %> to <%= doc.finish_date %></td>
+      <td><%= doc.subdivision %></td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>
 <%= link_to 'назад', root_path %>

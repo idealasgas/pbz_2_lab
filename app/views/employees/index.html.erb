@@ -1,6 +1,22 @@
 <%= link_to 'Добавить нового сотрудника', new_employee_path %>
+<br>
+<%= form_with scope: :search, url: employees_path, :method => 'get', local: true do |f| %>
+  <p>
+    <%= f.label 'Подразделение' %>
+    <%= f.label 'Пол' %>
+    <%= f.label 'Возраст' %>
+  </p>
+  <p>
+    <%= f.text_field :subdivision %>
+    <%= f.text_field :sex %>
+    <%= f.text_field :age %>
+    <%= f.submit "Поиск", :name => nil %>
+  </p>
+<% end %>
+
+<br>
 <table>
-  <%@employees.each do |employee|%>
+  <% @employees.each do |employee| %>
     <tr>
       <td><%= employee.id %></td>
       <td><%= employee.last_name %> <%= employee.name %> <%= employee.middle_name %></td>
@@ -14,6 +30,6 @@
               method: :delete,
               data: { confirm: 'Точно?' } %></td>
     </tr>
-  <%end%>
+  <% end %>
 </table>
 <%= link_to 'Назад', root_path %>
