@@ -24,21 +24,39 @@
   </div>
 </nav>
 <%= link_to 'Добавить новую единицу техники', new_technics_unit_path %>
-<table>
-  <%@units.each do |unit|%>
-    <tr>
-      <td><%= unit.id %></td>
-      <td><%= unit.name %></td>
-      <td><%= unit.inventory_number %></td>
-      <td><%= unit.model %></td>
-      <td><%= unit.production_year %></td>
-      <td><%= unit.subdivision %></td>
-      <td><%= link_to 'Изменить', edit_technics_unit_path(unit) %></td>
-      <td><%= link_to 'Списать', technics_unit_path(unit),
+<%= link_to 'Назад', root_path %>
+
+
+
+<div class="container">
+  <table class="table table-borderless bg-light">
+    <thead>
+      <tr class="table-info">
+        <th scope="col">название</th>
+        <th scope="col">инвентарный номер</th>
+        <th scope="col">модель</th>
+        <th scope="col">год выпуска</th>
+        <th scope="col">подразделение</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @units.each do |unit| %>
+        <tr>
+          <td><%= unit.name %></td>
+          <td><%= unit.inventory_number %></td>
+          <td><%= unit.model %></td>
+          <td><%= unit.production_year %></td>
+          <td><%= unit.subdivision %></td>
+          <td><%= link_to 'Изменить', edit_technics_unit_path(unit) %></td>
+          <td><%= link_to 'Списать', technics_unit_path(unit),
               method: :delete,
               data: { confirm: 'Точно?' } %></td>
-      <td><%= link_to 'Сдать в ремонт', new_repair_document_path(unit) %></td>
-    </tr>
-  <%end%>
-</table>
-<%= link_to 'Назад', root_path %>
+          <td><%= link_to 'Сдать в ремонт', new_repair_document_path(unit) %></td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+</div>
