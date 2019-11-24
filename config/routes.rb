@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   resources :transfer_documents
 
   get '/new_repair_document/:id', to: 'technics_repair_documents#new_doc', as: 'new_repair_document'
-  get '/subdivision', to: 'technics_repair_documents#subdivision', as: 'winner_path'
+  get '/subdivision', to: 'technics_repair_documents#subdivision', as: 'winner'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

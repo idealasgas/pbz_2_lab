@@ -31,6 +31,10 @@ class TechnicsRepairDocumentsController < ApplicationController
   end
 
   def subdivision
+    subdivisions = TechnicsRepairDocument.pluck(:client_id).map { |id| Employee.find(id).subdivision }
+    counts = Hash.new(0)
+    subdivisions.each { |name| counts[name] += 1 }
+    @subdivisions = counts.select{ |key, value| value == counts.values.max }.keys
   end
 
   private
