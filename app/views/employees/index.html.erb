@@ -70,8 +70,8 @@
           <td><%= employee.position %></td>
           <td><%= employee.sex %></td>
           <td><%= employee.age %></td>
-          <td><%= employee.start_date %></td>
-          <td><%= employee.finish_date %></td>
+          <td><%= employee.start_date.strftime('%D') %></td>
+          <td><%= employee.finish_date&.strftime('%D') %></td>
           <td><%= link_to 'Изменить', edit_employee_path(employee) %></td>
           <td><%= link_to 'Уволить', employee_path(employee),
                   method: :delete,
