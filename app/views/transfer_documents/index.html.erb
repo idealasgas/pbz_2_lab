@@ -23,15 +23,27 @@
     </ul>
   </div>
 </nav>
-<% @units.each do |unit| %>
-  <h1><%= unit.name %></h1>
-  <table>
-  <% unit.transfer_documents.each do |doc| %>
-    <tr>
-      <td>from <%= doc.start_date %> to <%= doc.finish_date %></td>
-      <td><%= doc.subdivision %></td>
-    </tr>
+
+<div class="container">
+  <% @units.each do |unit| %>
+    <% if unit.transfer_documents.first.finish_date.present? %>
+      <h1><%= unit.name %> <%= unit.model %></h1>
+      <table class="table table-borderless bg-light">
+        <thead>
+          <tr class="table-warning">
+            <th scope="col">подразделение</th>
+            <th scope="col">время нахождения</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% unit.transfer_documents.each do |doc| %>
+            <tr>
+              <td><%= doc.subdivision %></td>
+              <td>с <%= doc.start_date.strftime('%D') %> по <%= doc.finish_date&.strftime('%D') %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
   <% end %>
-  </table>
-<% end %>
-<%= link_to 'назад', root_path %>
+</div>

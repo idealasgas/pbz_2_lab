@@ -23,23 +23,43 @@
     </ul>
   </div>
 </nav>
-<% @repair_documents.each do |doc| %>
-  <table>
-    <tr>
-      <td><%= doc.id %></td>
-      <td><%= doc.start_date %></td>
-      <td><%= doc.repair_type %></td>
-      <td><%= doc.term %></td>
-      <td><%= doc.client.last_name %> <%= doc.client.name %> <%= doc.client.middle_name %></td>
-      <td><%= doc.client.id %></td>
-      <td><%= doc.receiver.last_name %> <%= doc.receiver.name %> <%= doc.receiver.middle_name %></td>
-      <td><%= doc.receiver.id %></td>
-      <td><%= doc.repair_man.last_name %> <%= doc.repair_man.name %> <%= doc.repair_man.middle_name %></td>
-      <td><%= doc.repair_man.id %></td>
-      <td><%= doc.repair_man.position %></td>
-      <td><button class="invoice">просмотреть накладную</button></td>
 
-    </tr>
-  </table>
-<% end %>
-<%= link_to 'назад', root_path %>
+<div class="container" style="margin-left: -10px;">
+  <table class="table table-borderless bg-light">
+    <thead>
+      <tr class="table-success">
+        <th scope="col">дата сдачи</th>
+        <th scope="col">тип ремонта</th>
+        <th scope="col">срок ремонта</th>
+        <th scope="col">ФИО сотрудника, сдавшего технику</th>
+        <th scope="col">номер сотрудника, сдавшего технику</th>
+        <th scope="col">ФИО сотрудника, принявшего технику</th>
+        <th scope="col">номер сотрудника, принявшего технику</th>
+        <th scope="col">ФИО сотрудника, выполняющего ремонт</th>
+        <th scope="col">номер сотрудника, выполняющего ремонт</th>
+        <th scope="col">должность сотрудника, выполняющего ремонт</th>
+        <th scope="col">перечень частей</th>
+        <th scope="col">дата получения частей</th>
+        <th scope="col">стоимость</th>
+      </thead>
+      <tbody>
+        <% @repair_documents.each do |doc| %>
+          <tr>
+            <td><%= doc.start_date.strftime('%D') %></td>
+            <td><%= doc.repair_type %></td>
+            <td><%= doc.term %></td>
+            <td><%= doc.client.last_name %> <%= doc.client.name %> <%= doc.client.middle_name %></td>
+            <td><%= doc.client.id %></td>
+            <td><%= doc.receiver.last_name %> <%= doc.receiver.name %> <%= doc.receiver.middle_name %></td>
+            <td><%= doc.receiver.id %></td>
+            <td><%= doc.repair_man.last_name %> <%= doc.repair_man.name %> <%= doc.repair_man.middle_name %></td>
+            <td><%= doc.repair_man.id %></td>
+            <td><%= doc.repair_man.position %></td>
+            <td><%= doc.invoice.names.join(',') %></td>
+            <td><%= doc.invoice.reception_date.strftime('%D') %></td>
+            <td><%= doc.invoice.price %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
