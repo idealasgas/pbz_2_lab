@@ -10,5 +10,6 @@ Rails.application.routes.draw do
 
   get '/new_repair_document/:id', to: 'technics_repair_documents#new_doc', as: 'new_repair_document'
   get '/subdivision', to: 'technics_repair_documents#subdivision', as: 'winner'
+  get 'count_units', to: 'technics_units#count', as: 'count_units'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

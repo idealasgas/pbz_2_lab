@@ -57,6 +57,15 @@ class TechnicsUnitsController < ApplicationController
     redirect_to technics_units_path
   end
 
+  def count
+    if params[:search].present?
+      subdivision = params[:search][:subdivision]
+      start_year = params[:search][:year].to_i
+      finish_year = start_year + 3
+      @data = TechnicsUnit.where(subdivision: subdivision, production_year: start_year..finish_year).group(:name).count
+    end
+  end
+
   private
 
   def validate_params

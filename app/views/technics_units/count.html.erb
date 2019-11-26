@@ -5,7 +5,7 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item">
         <%= link_to 'главная', root_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
@@ -24,10 +24,40 @@
   </div>
 </nav>
 
-<%= link_to 'Вывести для просмотра название подразделения,
-                   у которого была наибольшее количество техники,
-                   переданной в ремонт', winner_path, class: "btn btn-danger", style: "width: 200px; margin-left: 41%; margin-top: 15%;" %>
-
-<%= link_to 'Обеспечить расчет количества
-            техники определенного наименования по выбранному
-            подразделению по годам (за три года).', count_units_path, class: "btn btn-danger" %>
+<div class="container">
+  <div>
+    <%= form_with scope: :search, url: count_units_path, :method => 'get', local: true do |f| %>
+      <table class="table table-borderless">
+        <tr>
+          <td><%= f.label 'Подразделение' %>:</td>
+          <td><%= f.text_field :subdivision %></td>
+        </tr>
+        <tr>
+          <td><%= f.label 'Год' %>:</td>
+          <td><%= f.text_field :year %></td>
+        </tr>
+        <tr>
+          <td><%= f.submit "Поиск", :name => nil, class: "btn btn-primary" %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+  <% if params[:search].present? %>
+    <table class="table table-borderless bg-light">
+      <thead>
+        <tr class="table-primary">
+          <th scope="col">название</th>
+          <th scope="col">количество</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @data.each do |units, count| %>
+          <tr>
+            <td><%= units %></td>
+            <td><%= count %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
