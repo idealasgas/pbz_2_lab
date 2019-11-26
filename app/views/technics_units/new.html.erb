@@ -1,29 +1,35 @@
-<h1>Добавить новую единицу техники</h1>
+<div class="container">
+  <h1>Добавить новую единицу техники</h1>
 
-<h1><%=flash[:errors]%></h1>
+  <% flash[:errors]&.each do |error| %>
+    <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+  <% end %>
 
-<%= form_with scope: :technics_unit, url: technics_units_path, local: true do |form| %>
-  <p>
-    <%= form.label 'Имя' %><br>
-    <%= form.text_field :name %>
-  </p>
+  <%= form_with scope: :technics_unit, url: technics_units_path, local: true do |form| %>
+    <p>
+      <%= form.label 'Имя' %><br>
+      <%= form.text_field :name %>
+    </p>
 
-  <p>
-    <%= form.label 'Модель' %><br>
-    <%= form.text_field :model %>
-  </p>
+    <p>
+      <%= form.label 'Модель' %><br>
+      <%= form.text_field :model %>
+    </p>
 
-  <p>
-    <%= form.label 'Год производства' %><br>
-    <%= form.text_field :production_year %>
-  </p>
+    <p>
+      <%= form.label 'Год производства' %><br>
+      <%= form.text_field :production_year %>
+    </p>
 
-  <p>
-    <%= form.label 'Подразделение' %><br>
-    <%= form.text_field :subdivision %>
-  </p>
+    <p>
+      <%= form.label 'Подразделение' %><br>
+      <%= form.text_field :subdivision %>
+    </p>
 
-  <p>
-    <%= form.submit 'Добавить' %>
-  </p>
-<% end %>
+    <p>
+      <%= form.submit 'Добавить' %>
+    </p>
+  <% end %>
+</div>

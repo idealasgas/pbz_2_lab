@@ -1,61 +1,67 @@
-<h1>Сдать технику в ремонт</h1>
+<div class="container">
+  <h1>Сдать технику в ремонт</h1>
 
-<h1><%=flash[:errors]%></h1>
+  <% flash[:errors]&.each do |error| %>
+    <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+  <% end %>
 
-<%= form_with scope: :repair_document, url: technics_repair_documents_path, local: true do |f| %>
-  <p>
-    <%= f.label 'Начало ремонта' %><br>
-    <%= f.date_field :start_date %>
-  </p>
+  <%= form_with scope: :repair_document, url: technics_repair_documents_path, local: true do |f| %>
+    <p>
+      <%= f.label 'Начало ремонта' %><br>
+      <%= f.date_field :start_date %>
+    </p>
 
-  <p>
-    <%= f.label 'Тип ремонта' %><br>
-    <%= f.text_field :type %>
-  </p>
+    <p>
+      <%= f.label 'Тип ремонта' %><br>
+      <%= f.text_field :type %>
+    </p>
 
-  <p>
-    <%= f.label 'Срок ремонта (в днях)' %><br>
-    <%= f.text_field :term %>
-  </p>
+    <p>
+      <%= f.label 'Срок ремонта (в днях)' %><br>
+      <%= f.text_field :term %>
+    </p>
 
-  <p>
-    <%= f.label 'Номер сотрудника, сдавшего технику в ремонт' %><br>
-    <%= f.text_field :client_id %>
-  </p>
+    <p>
+      <%= f.label 'Номер сотрудника, сдавшего технику в ремонт' %><br>
+      <%= f.text_field :client_id %>
+    </p>
 
-  <p>
-    <%= f.label 'Номер сотрудника, который принял технику в ремонт' %><br>
-    <%= f.text_field :receiver_id %>
-  </p>
+    <p>
+      <%= f.label 'Номер сотрудника, который принял технику в ремонт' %><br>
+      <%= f.text_field :receiver_id %>
+    </p>
 
 
-  <p>
-    <%= f.label 'Номер сотрудника, выполняющего ремонт' %><br>
-    <%= f.text_field :repair_man_id %>
-  </p>
+    <p>
+      <%= f.label 'Номер сотрудника, выполняющего ремонт' %><br>
+      <%= f.text_field :repair_man_id %>
+    </p>
 
-  <p>
-    <%= f.hidden_field(:unit_id, :value => params[:id]) %>
-  </p>
+    <p>
+      <%= f.hidden_field(:unit_id, :value => params[:id]) %>
+    </p>
 
-  <h1>Накладная</h1>
+    <h1>Накладная</h1>
 
-  <p>
-    <%= f.label 'Названия деталей (через запятую)'%><br>
-    <%= f.text_field :names %>
-  </p>
+    <p>
+      <%= f.label 'Названия деталей (через запятую)'%><br>
+      <%= f.text_field :names %>
+    </p>
 
-  <p>
-    <%= f.label 'Стоимость всех деталей' %><br>
-    <%= f.text_field :price %>
-  </p>
+    <p>
+      <%= f.label 'Стоимость всех деталей' %><br>
+      <%= f.text_field :price %>
+    </p>
 
-  <p>
-    <%= f.label 'Дата получения' %><br>
-    <%= f.date_field :reception_date %>
-  </p>
+    <p>
+      <%= f.label 'Дата получения' %><br>
+      <%= f.date_field :reception_date %>
+    </p>
 
-  <p>
-    <%= f.submit 'Сдать в ремонт' %>
-  </p>
-<% end %>
+    <p>
+      <%= f.submit 'Сдать в ремонт' %>
+    </p>
+  <% end %>
+</div>
