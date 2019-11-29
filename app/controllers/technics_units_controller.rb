@@ -9,7 +9,7 @@ class TechnicsUnitsController < ApplicationController
       unit = TechnicsUnit.create(name: params[:technics_unit][:name],
                           model: params[:technics_unit][:model],
                           production_year: params[:technics_unit][:production_year].to_i,
-                          subdivision: params[:technics_unit][:subdivision])
+                          subdivision: Subdivision.find_by(name: params[:technics_unit][:subdivision]))
       unit.update(inventory_number: SecureRandom.hex(10))
       transfer = TransferDocument.create(technics_unit: unit, start_date: DateTime.now, subdivision: params[:technics_unit][:subdivision])
 
@@ -41,7 +41,7 @@ class TechnicsUnitsController < ApplicationController
       unit.update(name: params[:technics_unit][:name],
                   model: params[:technics_unit][:model],
                   production_year: params[:technics_unit][:production_year].to_i,
-                  subdivision: params[:technics_unit][:subdivision])
+                  subdivision: Subdivision.find_by(name: params[:technics_unit][:subdivision]))
 
       redirect_to technics_units_path
     else

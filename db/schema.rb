@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_16_110834) do
+ActiveRecord::Schema.define(version: 2019_11_29_063108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2019_11_16_110834) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "age"
+    t.integer "subdivision_id"
   end
 
   create_table "invoices", force: :cascade do |t|
@@ -37,6 +38,12 @@ ActiveRecord::Schema.define(version: 2019_11_16_110834) do
     t.bigint "technics_repair_document_id"
     t.text "names", default: [], array: true
     t.index ["technics_repair_document_id"], name: "index_invoices_on_technics_repair_document_id"
+  end
+
+  create_table "subdivisions", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "technics_repair_documents", force: :cascade do |t|
@@ -57,9 +64,9 @@ ActiveRecord::Schema.define(version: 2019_11_16_110834) do
     t.string "name"
     t.string "model"
     t.integer "production_year"
-    t.string "subdivision"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "subdivision_id"
   end
 
   create_table "transfer_documents", force: :cascade do |t|

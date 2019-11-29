@@ -66,7 +66,7 @@
       <% @employees.each do |employee| %>
         <tr>
           <td><%= employee.last_name %> <%= employee.name %> <%= employee.middle_name %></td>
-          <td><%= employee.subdivision %></td>
+          <td><%= employee.subdivision.name %></td>
           <td><%= employee.position %></td>
           <td><%= employee.sex %></td>
           <td><%= employee.age %></td>

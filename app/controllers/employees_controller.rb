@@ -20,7 +20,7 @@ class EmployeesController < ApplicationController
                           name: parameters[:name],
                           middle_name: parameters[:middle_name],
                           position: parameters[:position],
-                          subdivision: parameters[:subdivision],
+                          subdivision: Subdivision.find_by(name: parameters[:subdivision]),
                           start_date: DateTime.parse(parameters[:start_date]),
                           sex: parameters[:sex],
                           age: parameters[:age].to_i)
@@ -50,7 +50,7 @@ class EmployeesController < ApplicationController
                       name: parameters[:name],
                       middle_name: parameters[:middle_name],
                       position: parameters[:position],
-                      subdivision: parameters[:subdivision],
+                      subdivision: Subdivision.find_by(name: parameters[:subdivision]),
                       start_date: DateTime.parse(parameters[:start_date]),
                       sex: parameters[:sex],
                       age: parameters[:age].to_i)
