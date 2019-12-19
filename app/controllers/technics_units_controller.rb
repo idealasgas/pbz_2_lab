@@ -59,7 +59,8 @@ class TechnicsUnitsController < ApplicationController
 
   def count
     if params[:search].present?
-      subdivision = params[:search][:subdivision]
+      subdivision_name = params[:search][:subdivision]
+      subdivision = Subdivision.find_by(name: subdivision_name)
       start_year = params[:search][:year].to_i
       finish_year = start_year + 3
       @data = TechnicsUnit.where(subdivision: subdivision, production_year: start_year..finish_year).group(:name).count
